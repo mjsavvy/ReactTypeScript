@@ -20,7 +20,7 @@ export default function Hobbies() {
     },
     {
       title: 'Travelling',
-      description: 'Explorinasdasdasag and experiencing different things is a great way for me to unwind.',
+      description: 'Exploring and experiencing different things is a great way for me to unwind.',
       imageSrc: 'https://clipart-library.com/newhp/26-266233_people-traveling-png-transparent-background-travel-clipart-png.png', // Replace with the actual path to your image
     },
   ];
