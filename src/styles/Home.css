@@ -1,0 +1,82 @@
+/* Home.css */
+
+/* Styling for the body element */
+body {
+  margin: 0;
+  overflow: hidden;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Styling for the main container with a gradient background */
+.moving-background {
+  overflow-y: scroll;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, #c9adb0, #526685, #911a22, #33312f);
+  background-size: 400% 400%;
+}
+
+/* Styling for the content within the main container */
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #fff;
+}
+
+/* Styling for a line divider */
+.line {
+  width: 50%;
+  height: 2px;
+  background-color: #fff;
+  margin: 10px 0;
+}
+
+/* Styling for the main heading */
+h1 {
+  font-size: 4.5em;
+  margin-bottom: 100px;
+  color: aliceblue;
+  font-style: italic;
+}
+
+/* Styling for the secondary heading */
+h2 {
+  font-size: 1.5em;
+}
+
+/* Styling for a tertiary heading */
+h3 {
+  text-align: center;
+  font-size: 1.2em;
+  margin: 20px;
+}
+
+/* Keyframes for gradient animation */
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Styling for the form control */
+.form .transparent-input {
+  width: 200%;
+  text-align: center;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 30px;
+  padding: 6px;
+  height: 90px;
+  margin-left: -125px;
+}

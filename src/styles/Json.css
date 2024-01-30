@@ -1,0 +1,26 @@
+/* Styling for the user list header */
+.user-list-header {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 50px;
+  color: aliceblue;
+}
+
+/* Styling for the container of user cards */
+.user-card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+/* Styling for individual user cards */
+.user-card {
+  width: 18rem;
+  margin: 10px;
+  transition: transform 0.3s ease-in-out;
+
+  /* Hover effect to scale the card on mouseover */
+  &:hover {
+    transform: scale(1.05);
+  }
+}

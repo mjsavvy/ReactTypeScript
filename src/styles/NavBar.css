@@ -1,0 +1,63 @@
+/* NavBar.css */
+
+/* Custom font */
+body {
+  font-family: 'Montserrat', sans-serif;
+  }
+  
+  /* Navbar styling */
+  
+  .bg-body-tertiary {
+    background-color: #3498db;
+    color: #ffffff;
+  }
+  
+  /* Navbar brand styling */
+  .navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  /* Navbar links styling */
+  .nav-link {
+    color: rgb(89, 89, 89);
+    font-size: 1rem;
+    margin-right: 15px;
+  }
+  
+  /* Active link styling */
+  .nav-link.active {
+    color: #000000; /* Adjust the color for the active link */
+    font-weight: bolder;
+  }
+  
+  /* Navbar toggle button styling */
+  .navbar-toggler-icon {
+    background-color: #c9c9c9;
+  }
+  
+  /* Container inside Navbar styling */
+  .container {
+    padding: 0;
+  }
+  
+  /* Responsive styling */
+  @media (max-width: 768px) {
+    .navbar-nav {
+      margin-top: 10px;
+    }
+  
+    .navbar-brand {
+      margin-bottom: 10px;
+    }
+  
+    .nav-link {
+      margin-right: 0;
+      margin-bottom: 10px;
+    }
+    .navbar {
+      background-color: #3498db; /* Change this to your desired background color */
+      color: #ffffff; 
+    }
+  }
+  
