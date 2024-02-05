@@ -18,17 +18,30 @@ export default function Calculator() {
 
   // Function to handle button clicks and update the input expression
   const handleButtonClick = (value: string) => {
-    if (!operatorClicked || !'+-*/'.includes(value)) {
-      setInput((prevInput) => prevInput + value);
-      if ('+-*/'.includes(value)) {
-        setOperatorClicked(true);
-      } else {
-        setOperatorClicked(false);
-      }
-    } else {
-      // If an operator is clicked again, replace the last operator with the new one
-      setInput((prevInput) => prevInput.slice(0, -1) + value);
-    }
+// Check if an operator is not clicked or the current value is not an operator
+if (!operatorClicked || !'+-*/'.includes(value)) {
+  // Check if the current input is '0'
+  if (input === '0') {
+    // If '0', replace it with the new value
+    setInput(value);
+  } else {
+    // If not '0', append the new value to the existing input
+    setInput((prevInput) => prevInput + value);
+  }
+
+  // Check if the current value is an operator
+  if ('+-*/'.includes(value)) {
+    // Set operatorClicked state to true if an operator is clicked
+    setOperatorClicked(true);
+  } else {
+    // Set operatorClicked state to false if a non-operator button is clicked
+    setOperatorClicked(false);
+  }
+} else {
+  // If an operator is clicked again, replace the last operator with the new one
+  setInput((prevInput) => prevInput.slice(0, -1) + value);
+}
+
   };
 
   // Function to clear the input expression
