@@ -19,6 +19,23 @@ interface User {
   };
 }
 
+// Reusable UserCard component
+const UserCard: React.FC<{ user: User }> = ({ user }) => (
+  <Card key={user.id} className="user-card">
+    <Card.Body>
+      <Card.Title>{user.name}</Card.Title>
+      <Card.Subtitle className="mb-2 text-muted">Username: {user.username}</Card.Subtitle>
+      <Card.Text>
+        <strong>Email:</strong> {user.email}<br />
+        <strong>Street:</strong> {user.address.street}<br />
+        <strong>Suite:</strong> {user.address.suite}<br />
+        <strong>City:</strong> {user.address.city}<br />
+        <strong>Zipcode:</strong> {user.address.zipcode}
+      </Card.Text>
+    </Card.Body>
+  </Card>
+);
+
 // Functional component for fetching and displaying JSON data
 export default function JSON() {
   // State variable to store the fetched users data
@@ -29,45 +46,33 @@ export default function JSON() {
     // Async function to fetch data and update state
     const fetchData = async () => {
       try {
+        // Fetching user data from an external API
         const response = await axios.get('https://jsonplaceholder.typicode.com/users');
+        // Updating the state variable with the fetched data
         setUsers(response.data);
       } catch (error) {
+        // Logging an error message if there's an issue with fetching data
         console.error('Error fetching data:', error);
       }
     };
 
-    // Calling the fetchData function
+    // Calling the fetchData function when the component mounts
     fetchData();
   }, []);
 
   // Rendering the JSON component with layout, title, and user cards
   return (
     <Layout>
+      {/* Adding a moving background to the component */}
       <div className="moving-background">
         <Container>
-          {/* Displaying the header */}
+          {/* Displaying a title for the user list */}
           <h3 className="user-list-header">User List</h3>
-          {/* Container for user cards */}
+          {/* Container for rendering user cards */}
           <div className="user-card-container">
-            {/* Mapping through the users array to create Card components */}
+            {/* Mapping through the users array and rendering UserCard component for each user */}
             {users.map((user) => (
-              <Card key={user.id} className="user-card">
-                {/* Card body with user information */}
-                <Card.Body>
-                  {/* Displaying user name */}
-                  <Card.Title>{user.name}</Card.Title>
-                  {/* Displaying username as a subtitle */}
-                  <Card.Subtitle className="mb-2 text-muted">Username: {user.username}</Card.Subtitle>
-                  {/* Displaying additional user details */}
-                  <Card.Text>
-                    <strong>Email:</strong> {user.email}<br />
-                    <strong>Street:</strong> {user.address.street}<br />
-                    <strong>Suite:</strong> {user.address.suite}<br />
-                    <strong>City:</strong> {user.address.city}<br />
-                    <strong>Zipcode:</strong> {user.address.zipcode}
-                  </Card.Text>
-                </Card.Body>
-              </Card>
+              <UserCard key={user.id} user={user} />
             ))}
           </div>
         </Container>
