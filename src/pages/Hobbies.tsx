@@ -1,41 +1,47 @@
-// Importing React, Layout component, and Bootstrap styles and components
-import React from 'react';
-import Layout from '../components/Layout';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Row, Col, Card, Image } from 'react-bootstrap';
+import React from 'react'; // Import React library for using React components
+import Layout from '../components/Layout'; // Importing custom Layout component
+import 'bootstrap/dist/css/bootstrap.min.css'; // Importing Bootstrap CSS
+import { Container, Row, Col, Card } from 'react-bootstrap'; // Importing necessary components from React Bootstrap library
 
-// Interface for the hobby object
+// Defining interface for Hobby object
 interface Hobby {
   title: string;
   description: string;
   imageSrc: string;
 }
 
-// Props interface for the HobbyCard component
+// Defining interface for props of HobbyCard component
 interface HobbyCardProps {
   hobby: Hobby;
 }
 
-// Reusable HobbyCard component
+// HobbyCard component definition
 const HobbyCard: React.FC<HobbyCardProps> = ({ hobby }) => (
+  // Column with medium width 4 and margin bottom 4
   <Col md={4} className="mb-4">
-    <Card>
-      {/* Displaying an image for the hobby */}
-      <Image src={hobby.imageSrc} alt={hobby.title} fluid />
-
-      <Card.Body>
-        {/* Displaying the title of the hobby */}
-        <Card.Title>{hobby.title}</Card.Title>
-        {/* Displaying the description of the hobby */}
-        <Card.Text>{hobby.description}</Card.Text>
+    {/* Card component from React Bootstrap */}
+    <Card className="h-100">
+      {/* Container for image with fixed height and overflow hidden */}
+      <div style={{ height: '200px', overflow: 'hidden' }}>
+        {/* Image for hobby with specific styling */}
+        <Card.Img variant="top" src={hobby.imageSrc} alt={hobby.title} className="card-img-top" style={{ height: '100%', objectFit: 'cover' }} />
+      </div>
+      {/* Body of the card */}
+      <Card.Body className="d-flex flex-column justify-content-between">
+        <div>
+          {/* Title of the hobby */}
+          <Card.Title className="text-center">{hobby.title}</Card.Title>
+          {/* Description of the hobby */}
+          <Card.Text className="text-center">{hobby.description}</Card.Text>
+        </div>
       </Card.Body>
     </Card>
   </Col>
 );
 
-// Functional component for displaying hobbies
+// Hobbies component definition
 const Hobbies: React.FC = () => {
-  // Array of hobby objects with title, description, and image source
+  // Array of Hobby objects
   const hobbies: Hobby[] = [
     {
       title: 'Reading',
@@ -50,20 +56,21 @@ const Hobbies: React.FC = () => {
     {
       title: 'Travelling',
       description: 'Exploring and experiencing different things is a great way for me to unwind.',
-      imageSrc: 'https://clipart-library.com/newhp/26-266233_people-traveling-png-transparent-background-travel-clipart-png.png',
+      imageSrc: 'https://www.vhv.rs/dpng/f/405-4056956_earth-travel-world-png-transparent-image-travel-around.png',
     },
   ];
 
   return (
+    // Layout component wrapper
     <Layout>
-      {/* Adding a moving background to the component */}
+      {/* Container for hobbies with margin top 4 */}
       <div className="moving-background">
         <Container className="mt-4">
-          {/* Displaying a title for the hobbies section */}
-          <h1 className="mb-4">My Hobbies</h1>
-          {/* Container for rendering hobby cards in a row */}
+          {/* Heading for hobbies */}
+          <h1 className="mb-4 text-center">My Hobbies</h1>
+          {/* Row for displaying hobbies */}
           <Row>
-            {/* Mapping through the hobbies array and rendering HobbyCard component for each hobby */}
+            {/* Mapping hobbies to HobbyCard components */}
             {hobbies.map((hobby, index) => (
               <HobbyCard key={index} hobby={hobby} />
             ))}
@@ -74,5 +81,5 @@ const Hobbies: React.FC = () => {
   );
 };
 
+// Exporting Hobbies component as default
 export default Hobbies;
-
