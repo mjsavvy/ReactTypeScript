@@ -1,78 +1,36 @@
-// Importing necessary React hooks, axios, Bootstrap components, Layout component, and CSS
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { Container, Card } from 'react-bootstrap';
-import Layout from '../components/Layout';
-import '../styles/Json.css';
+// React component to fetch user data from JSONPlaceholder API and display user cards
+import React, { useState, useEffect } from 'react'; // Importing necessary modules from React
+import axios from 'axios'; // Importing axios for HTTP requests
+import { Container } from 'react-bootstrap'; // Importing Container component from react-bootstrap
+import Layout from '../components/Layout'; // Importing Layout component
+import '../styles/Json.css'; // Importing CSS styles
+import UserCard from '../components/UserCard'; // Importing UserCard component
+import { User } from './type'; // Importing User type definition
 
-// Interface defining the structure of a user object
-interface User {
-  id: number;
-  name: string;
-  username: string;
-  email: string;
-  address: {
-    street: string;
-    suite: string;
-    city: string;
-    zipcode: string;
-  };
-}
+export default function JSON() { // Defining functional component JSON
+  const [users, setUsers] = useState<User[]>([]); // Initializing state variable for users
 
-// Reusable UserCard component
-const UserCard: React.FC<{ user: User }> = ({ user }) => (
-  <Card key={user.id} className="user-card">
-    <Card.Body>
-      <Card.Title>{user.name}</Card.Title>
-      <Card.Subtitle className="mb-2 text-muted">Username: {user.username}</Card.Subtitle>
-      <Card.Text>
-        <strong>Email:</strong> {user.email}<br />
-        <strong>Street:</strong> {user.address.street}<br />
-        <strong>Suite:</strong> {user.address.suite}<br />
-        <strong>City:</strong> {user.address.city}<br />
-        <strong>Zipcode:</strong> {user.address.zipcode}
-      </Card.Text>
-    </Card.Body>
-  </Card>
-);
-
-// Functional component for fetching and displaying JSON data
-export default function JSON() {
-  // State variable to store the fetched users data
-  const [users, setUsers] = useState<User[]>([]);
-
-  // useEffect hook to fetch data from an external API on component mount
-  useEffect(() => {
-    // Async function to fetch data and update state
-    const fetchData = async () => {
+  useEffect(() => { // Effect hook for fetching data
+    const fetchData = async () => { // Asynchronous function to fetch data
       try {
-        // Fetching user data from an external API
-        const response = await axios.get('https://jsonplaceholder.typicode.com/users');
-        // Updating the state variable with the fetched data
-        setUsers(response.data);
+        const response = await axios.get('https://jsonplaceholder.typicode.com/users'); // HTTP GET request to fetch users
+        setUsers(response.data); // Updating users state with fetched data
       } catch (error) {
-        // Logging an error message if there's an issue with fetching data
-        console.error('Error fetching data:', error);
+        console.error('Error fetching data:', error); // Handling error if data fetching fails
       }
     };
 
-    // Calling the fetchData function when the component mounts
-    fetchData();
-  }, []);
+    fetchData(); // Calling fetchData function
+  }, []); // Empty dependency array ensures the effect runs only once after the initial render
 
-  // Rendering the JSON component with layout, title, and user cards
-  return (
-    <Layout>
-      {/* Adding a moving background to the component */}
-      <div className="moving-background">
-        <Container>
-          {/* Displaying a title for the user list */}
-          <h3 className="user-list-header">User List</h3>
-          {/* Container for rendering user cards */}
-          <div className="user-card-container">
-            {/* Mapping through the users array and rendering UserCard component for each user */}
-            {users.map((user) => (
-              <UserCard key={user.id} user={user} />
+  return ( // JSX markup to render UI
+    <Layout> {/* Rendering Layout component */}
+      <div className="moving-background"> {/* Div with moving background */}
+        <Container> {/* Bootstrap container */}
+          <h3 className="user-list-header">User List</h3> {/* Header for user list */}
+          <div className="user-card-container"> {/* Div for user card container */}
+            {users.map((user) => ( // Mapping over users array to render UserCard component for each user
+              <UserCard key={user.id} user={user} /> // Rendering UserCard component with unique key and user data
             ))}
           </div>
         </Container>

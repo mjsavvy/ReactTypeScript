@@ -62,7 +62,7 @@ export default function Calculator() {
       // Evaluate input expression
       const result = eval(sanitizedInput);
       // Display result with 2 decimal places if not an integer
-      setInput(Number.isInteger(result) ? result.toString() : result.toFixed(2));
+      setInput(Number.isInteger(result) ? result.toString() : result.toFixed(5));
       setOperatorClicked(false);
     } catch (error) {
       setInput("Error");

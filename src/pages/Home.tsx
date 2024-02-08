@@ -44,7 +44,6 @@ const Home: React.FC = () => {
         <Row className="moving-background">
           <Col className="content">
             {/* Displaying the dynamically typed text */}
-            
             <h1>{text}</h1>
             {/* Form section with input for the user's name */}
             <div className='form'>
